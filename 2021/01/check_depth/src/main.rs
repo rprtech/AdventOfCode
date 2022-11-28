@@ -1,8 +1,8 @@
 use std::fs;
 
 fn main() {
-    let contents = fs::read("depth_readings.txt")
+    let contents = fs::read_to_string("depth_readings.txt")
         .expect("Should have been able to read this file");
 
-    dbg!(&contents);
+    dbg!(contents);
 }
