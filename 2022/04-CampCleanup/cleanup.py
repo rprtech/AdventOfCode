@@ -24,6 +24,11 @@ class CleanupAssignment:
 
 
     def _is_fully_contained(self) -> bool:
+        """
+        This method could be written better by converting to sets then using the 'issubset' method.
+        See _is_overlapping method below for creating sets.  Maybe these 2 functions could be combined.
+        REMEMBER: If fully_contained is True, then overlap is also True
+        """
         elf1 = 0
         elf2 = 1
 
@@ -45,12 +50,12 @@ class CleanupAssignment:
         #print(f'Received ranges: {rng_list}')
         self.elf = self._assign_cleanup(rng_list)
         self.full_containment: bool = self._is_fully_contained()
-        self.over_lap: bool = self._is_overlapping()
+        self.overlap: bool = self._is_overlapping()
 
         if self.full_containment:
             CleanupAssignment.__increment_full_containment()
 
-        if self.over_lap:
+        if self.overlap:
             CleanupAssignment.__increment_overlap()
 
 
