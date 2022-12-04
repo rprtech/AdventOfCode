@@ -3,10 +3,15 @@ from typing import List
 
 class CleanupAssignment:
     total_full_containment: int = 0
+    total_overlap: int = 0
 
     @classmethod
     def __increment_full_containment(cls) -> None:
         cls.total_full_containment += 1
+
+    @classmethod
+    def __increment_overlap(cls) -> None:
+        cls.total_overlap += 1
 
     def _assign_cleanup(self, rng_list: List[str]) -> List:
         assigned_elf = []
@@ -30,15 +35,23 @@ class CleanupAssignment:
         
         return False
 
+    def _is_overlapping(self) -> bool:
+        elf1_sections = set(range(self.elf[0]['start'], self.elf[0]['stop'] + 1))
+        elf2_sections = set(range(self.elf[1]['start'], self.elf[1]['stop'] + 1))
 
+        return True if len(elf1_sections.intersection(elf2_sections)) > 0 else False
 
     def __init__(self, rng_list: List[str]) -> None:
         #print(f'Received ranges: {rng_list}')
         self.elf = self._assign_cleanup(rng_list)
         self.full_containment: bool = self._is_fully_contained()
+        self.over_lap: bool = self._is_overlapping()
 
         if self.full_containment:
             CleanupAssignment.__increment_full_containment()
+
+        if self.over_lap:
+            CleanupAssignment.__increment_overlap()
 
 
 def main() -> None:
@@ -53,6 +66,7 @@ def main() -> None:
             assignments.append(CleanupAssignment(line.split(',')))
 
     print(f'Full Containment = {CleanupAssignment.total_full_containment}')
+    print(f'Overlap = {CleanupAssignment.total_overlap}')
 
 
 ### Call main ###
