@@ -25,7 +25,7 @@ class Crates:
         #print(f'The number of crate stacks are: {len(self.stacks)}')
 
     def __str__(self) -> str:
-        pass
+        return 'Not yet implemented!'
 
 class Crane:
     def add_operation(self, num_crates: int, from_stack: int, to_stack: int):
@@ -99,6 +99,7 @@ def main():
     giant_crane.move(supply_stacks)
     
     print(f'Rearranged Stack\n{supply_stacks.top_crates_string()}')
+    print(f'Supply Stacks: {supply_stacks}')
 
 
 
