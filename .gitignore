@@ -11,3 +11,7 @@ Cargo.lock
 
 # Prevent Upload of Personal Access Token to AdventOfCode Repo
 AdventOfCode.pat
+
+# Python
+**/__pycache__
+
