@@ -13,5 +13,5 @@ Cargo.lock
 AdventOfCode.pat
 
 # Python
-**/__pycache__
+**/__pycache__/
 
